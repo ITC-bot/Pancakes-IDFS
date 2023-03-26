@@ -1,6 +1,8 @@
 # Juegos-de-los-Pancakes-aplicando-busqueda-en-profundidad-Iterativa
 Juego de los pancakes (pancake sorting) aplicando busqueda en profundidad iterativa
 
+Hecho por Marcos Zacarias, ITC-TM, Universidad Autonoma de Baja California Sur
+
 Pequeña explicacion de las funciones:
 
 --"void voltear(string& pancakes, int k)" 
