@@ -56,28 +56,31 @@ string generar_caracteres_aleatorios(int n) {
     return pancakes;
 }
 
-// Función que realiza la búsqueda en profundidad
-void dfs(string pancakes) {
-    stack<string> pila;
-    unordered_set<string> visitados;
+// Función que realiza la búsqueda en profundidad iterativa
+void idfs(string pancakes) {
     int count = 0;
-    pila.push(pancakes);
-    visitados.insert(pancakes);
-    while (!pila.empty()) {
-        string curr_pancakes = pila.top();
-        pila.pop();
-        count++;
-        if (esta_ordenada(curr_pancakes)) {
-            cout << "Solucion encontrada: " << curr_pancakes << endl;
-            cout << "Numero de nodos visitados: " << count << endl;
-            return;
-        }
-        vector<string> sucesores = generar_sucesores(curr_pancakes);
-        for (string sucesor : sucesores) {
-            if (visitados.find(sucesor) == visitados.end()) {
-                pila.push(sucesor);
-                visitados.insert(sucesor);
-                count++;
+    for (int depth = 1; depth <= pancakes.size(); depth++) {
+        stack<string> pila;
+        unordered_set<string> visitados;
+        pila.push(pancakes);
+        visitados.insert(pancakes);
+        while (!pila.empty()) {
+            string curr_pancakes = pila.top();
+            pila.pop();
+            count++;
+            if (esta_ordenada(curr_pancakes)) {
+                cout << "Solucion encontrada: " << curr_pancakes << endl;
+                cout << "Numero de nodos visitados: " << count << endl;
+                return;
+            }
+            if (depth <= curr_pancakes.size()) {
+                vector<string> sucesores = generar_sucesores(curr_pancakes);
+                for (string sucesor : sucesores) {
+                    if (visitados.find(sucesor) == visitados.end()) {
+                        pila.push(sucesor);
+                        visitados.insert(sucesor);
+                    }
+                }
             }
         }
     }
@@ -92,7 +95,6 @@ int main() {
     cin >> n;
     string pancakes = generar_caracteres_aleatorios(n);
     cout << "Pila de pancakes original: " << pancakes << endl;
-    dfs(pancakes);
+    idfs(pancakes);
     return 0;
 }
-
