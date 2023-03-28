@@ -56,20 +56,25 @@ string generar_caracteres_aleatorios(int n) {
     return pancakes;
 }
 
-// Función que realiza la búsqueda en profundidad
-void dfs(string pancakes, unordered_set<string>& visitados, int& count) {
+// Función recursiva que realiza la búsqueda en profundidad iterativa
+bool idfs(string pancakes, int depth, int& count) {
     count++;
     if (esta_ordenada(pancakes)) {
         cout << "Solucion encontrada: " << pancakes << endl;
-        return;
+        cout << "Numero de nodos visitados: " << count << endl;
+        return true;
+    }
+    if (depth > pancakes.size()) {
+        return false;
     }
     vector<string> sucesores = generar_sucesores(pancakes);
     for (string sucesor : sucesores) {
-        if (visitados.find(sucesor) == visitados.end()) {
-            visitados.insert(sucesor);
-            dfs(sucesor, visitados, count);
+        bool encontrado = idfs(sucesor, depth + 1, count);
+        if (encontrado) {
+            return true;
         }
     }
+    return false;
 }
 
 //Funcion principal
@@ -79,16 +84,13 @@ int main() {
     cin >> n;
     string pancakes = generar_caracteres_aleatorios(n);
     cout << "Pila de pancakes original: " << pancakes << endl;
-    unordered_set<string> visitados;
     int count = 0;
-    visitados.insert(pancakes);
-    dfs(pancakes, visitados, count);
-    if (count > 0) {
-        cout << "Numero de nodos visitados: " << count << endl;
-    } else {
-        cout << "No se encontro solucion." << endl;
+    for (int depth = 1; depth <= pancakes.size(); depth++) {
+        if (idfs(pancakes, depth, count)) {
+            return 0;
+        }
     }
+    cout << "No se encontro solucion." << endl;
+    cout << "Numero de nodos visitados: " << count << endl;
     return 0;
 }
-
-
