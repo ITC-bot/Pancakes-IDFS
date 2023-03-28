@@ -85,12 +85,17 @@ int main() {
     string pancakes = generar_caracteres_aleatorios(n);
     cout << "Pila de pancakes original: " << pancakes << endl;
     int count = 0;
+    bool encontrado = false;
     for (int depth = 1; depth <= pancakes.size(); depth++) {
-        if (idfs(pancakes, depth, count)) {
-            return 0;
+        encontrado = idfs(pancakes, depth, count);
+        if (encontrado) {
+            break;
         }
     }
-    cout << "No se encontro solucion." << endl;
-    cout << "Numero de nodos visitados: " << count << endl;
+    if (!encontrado) {
+        cout << "No se encontro solucion." << endl;
+        cout << "Numero de nodos visitados: " << count << endl;
+    }
     return 0;
 }
+
