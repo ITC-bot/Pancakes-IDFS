@@ -18,7 +18,7 @@ Esta función recibe una cadena de caracteres pancakes y devuelve un vector de c
 Esta función recibe un entero n y devuelve una cadena de caracteres de longitud n, se usa para generar caracteres aleatorios, asi ahorrando estar pidiendo al usuario que se ingrese caracter por caracter.
 
 --"idfs(string pancakes)"
-Por actualizar
+Toma una cadena pancakes, un entero depth que representa la profundidad actual de la búsqueda, y una referencia a un entero count que lleva la cuenta del número de nodos visitados durante la búsqueda. La función primero verifica si pancakes está ordenada; si lo está, devuelve true. Si depth es mayor que la longitud de la cadena pancakes, devuelve false. Si no, genera todos los sucesores de pancakes y realiza una búsqueda en profundidad recursiva para cada sucesor. Si alguno de estos sucesores devuelve true, la función devuelve true. Si ninguno de ellos devuelve true, la función devuelve false.
 
---"int main()" Esta es la función principal del programa. Solicita al usuario el número de caracteres de la pila de pancakes, genera una configuración aleatoria de pancakes utilizando la función generar_caracteres_aleatorios y llama a la función idfs para llevar a cabo la búsqueda por amplitud.
+--"int main()" Esta es la función principal del programa. Pide al usuario que ingrese la longitud de la cadena de pancakes, genera una cadena aleatoria de caracteres que representan los pancakes, e imprime esta cadena. Luego, realiza la búsqueda en profundidad iterativa para esta cadena de pancakes, comenzando con una profundidad de 1 y aumentando hasta la longitud de la cadena de pancakes si no se encuentra una solución. Si se encuentra una solución, imprime la solución y el número de nodos visitados. Si no se encuentra una solución, imprime un mensaje indicando que no se encontró una solución y el número de nodos visitados.
 
